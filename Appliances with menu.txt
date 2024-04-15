@@ -1,0 +1,115 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Appliance;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author d00267317
+ */
+public class HouseTest {
+    public static void main (String []args)
+    {
+        //Set House 
+        House h1 = new House ();
+        h1.setName  ("Beginner House");
+        h1.setLocation ("Suburbs");
+        h1.setEnergy (25);
+        h1.setRooms (4);
+        
+        //Setting appliances
+        Appliance a1 = new Appliance ("Stove","Kitchen",true,3.5,0.90);
+        Appliance a2 = new Appliance ("Water heater","Hot Press",false,4,1.47);
+        Appliance a3 = new Appliance();
+        h1.addAppliance (a1);
+        h1.addAppliance (a2);
+        h1.addAppliance (a3);
+        System.out.println (h1+"\n");
+        //menu
+        Scanner keyboard = new Scanner(System.in);
+        printMenu();
+        System.out.println("Please input your chosen option");
+        int option = keyboard.nextInt();
+        while(option !=7)
+        {
+            if(option == 1)
+            {
+                //System.out.println(d1);
+                option1(h1);
+            }
+            else if(option == 2)
+            {
+                option2(a3);
+            }
+            else if(option == 3)
+            {
+                //option3(d1);
+            }
+             printMenu();
+            System.out.println("Please input your chosen option:");
+            option = keyboard.nextInt();
+
+    }
+}
+        public static void printMenu()
+    {
+        System.out.println("Option Menu:");
+        System.out.println("1. Display House");
+        System.out.println("2. Add Appliance");
+        System.out.println("3. Modify an Appliance");
+        System.out.println("7. Exit");
+    }
+        public static void option1(House h)
+    {
+        System.out.println(h);
+    }
+    public static void option2(Appliance a)
+    {
+        int yesorno; 
+        boolean renewable=false;
+        System.out.println("You have selected to input a new appliance");
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please input new appliance's name");
+        String name = keyboard.nextLine();
+        System.out.println("Please input new appliances's location");
+        String location = keyboard.nextLine();
+        System.out.println("is this appliance reneweable or not?\n1.(Yes) 2. (No)");
+        yesorno = keyboard.nextInt();
+        if (yesorno==1)
+        {
+             renewable = true;
+        }
+        else if (yesorno==2)
+        {
+            renewable = false;
+        }
+        else
+        {
+           System.out.println("invalid input please re-enter your desired option");
+           yesorno=keyboard.nextInt();
+        }
+        System.out.println("Please input new appliances's energy usage daily");
+        double energy = keyboard.nextDouble();
+        System.out.println("Please input new appliances's daily cost");
+        double cost_daily = keyboard.nextDouble();
+        Appliance a3 = new Appliance(name,location,renewable,energy,cost_daily);
+        System.out.println(a3);
+    }
+     public static void option3(ArrayList<Appliance> appliances)
+    {
+        String chosen_name;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Plese pick an appliance to modify");
+        chosen_name = keyboard.nextLine();
+        for(int i = 0;i< appliances.size();i++)
+        {
+            
+        }
+    }
+
+
+}
