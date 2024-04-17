@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -5,11 +6,12 @@
 package Appliance;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
  *
- * @author d00267317
+ * @author dylansmyth
  */
 public class HouseTest {
     public static void main (String []args)
@@ -23,10 +25,8 @@ public class HouseTest {
         //Setting appliances
         Appliance a1 = new Appliance ("Stove","Kitchen",true,3.5,0.90);
         Appliance a2 = new Appliance ("Water heater","Hot Press",false,4,1.47);
-        Appliance a3 = new Appliance();
         h1.addAppliance (a1);
         h1.addAppliance (a2);
-        h1.addAppliance (a3);
         System.out.println (h1+"\n");
         //menu
         Scanner keyboard = new Scanner(System.in);
@@ -37,37 +37,56 @@ public class HouseTest {
         {
             if(option == 1)
             {
-                //System.out.println(d1);
                 option1(h1);
             }
             else if(option == 2)
             {
-                option2(a3);
+                option2(h1);
             }
             else if(option == 3)
             {
                 option3(h1.getAppliances());
             }
+            else if (option ==4)
+            {
+                option4(h1.getAppliances());
+            }
+            else if (option ==5)
+            {
+                option5(h1.getAppliances());
+            }
+            else if (option ==6)
+            {
+                option6(h1.getAppliances());
+            }
+            else        
+            {
+                System.out.println("Invalid input please try again");
+            }
              printMenu();
             System.out.println("Please input your chosen option:");
             option = keyboard.nextInt();
+            
 
     }
 }
         public static void printMenu()
     {
-        System.out.println("Option Menu:");
+        System.out.println("**************************************Option Menu:**************************************");
         System.out.println("1. Display House");
         System.out.println("2. Add Appliance");
         System.out.println("3. Modify an Appliance");
         System.out.println("4. View Appliances");
+        System.out.println("5. Delete Appliance");
+        System.out.println("6. Sort the appliances");
         System.out.println("7. Exit");
+       System.out.println("*****************************************************************************************");
     }
         public static void option1(House h)
     {
         System.out.println(h);
     }
-    public static void option2(Appliance a)
+    public static void option2(House h)
     {
         boolean renewable=false;
         String yesorno="";
@@ -97,10 +116,12 @@ public class HouseTest {
         System.out.println("Please input new appliances's daily cost");
         double cost_daily = keyboard.nextDouble();
         Appliance a3 = new Appliance(name,location,renewable,energy,cost_daily);
+        h.addAppliance (a3);
         System.out.println(a3);
     }
      public static void option3(ArrayList<Appliance> appliances) {
     Scanner keyboard = new Scanner(System.in);
+     String yesorno=""; 
     System.out.println("Please pick an appliance to modify:");
     String chosenName = keyboard.nextLine(); 
     for (int i = 0; i < appliances.size(); i++) {
@@ -142,29 +163,38 @@ public class HouseTest {
                a.setRenewable(false);
               }
               System.out.println("Would you like to change the appliances energy amount?");
-                double newEnergy = keyboard.nextInt();
-              if(newName.equalsIgnoreCase("yes"))
+              yesorno = keyboard.nextLine();
+              double newEnergy;
+              if(yesorno.equalsIgnoreCase("yes"))
               {
                   System.out.println("What do you want the new energy amount to be?");
                   newEnergy=keyboard.nextDouble();
                   a.setEnergy(newEnergy);
               }
+              else if (yesorno.equalsIgnoreCase("no"))
+              {
+                  newEnergy = a.getEnergy();
+              }
               else
               {
-               
+                  
               }
               System.out.println("Would you like to change the appliances daily cost?");
-              Double newCost = keyboard.nextDouble();
-              String yesorno=""; 
+              yesorno = keyboard.nextLine();
+              Double newCost;
               if(yesorno.equalsIgnoreCase("yes"))
               {
                   System.out.println("What do you want the new cost to be?");
                   newCost=keyboard.nextDouble();
                   a.setDailycost(newCost);
               }
-              else
+              else if(yesorno.equalsIgnoreCase("no"))
               {
                
+              }
+              else
+              {
+                  
               }
               System.out.println(a);
         }
@@ -173,5 +203,54 @@ public class HouseTest {
         }
         
     }
+    
      }
+     public static void option4(ArrayList<Appliance> appliances)
+     {
+         for (int i = 0; i < appliances.size(); i++) {
+            Appliance a = appliances.get(i);
+            System.out.println(a);
+     }
+     }
+     public static void option5(ArrayList<Appliance> appliances)
+     {
+      Scanner keyboard = new Scanner(System.in);
+     String yesorno=""; 
+    System.out.println("Please pick an appliance to delete:");
+    String chosenName = keyboard.nextLine(); 
+    boolean appliance_found= false;
+    for (int i = 0; i < appliances.size(); i++) {
+        Appliance a = appliances.get(i);
+        if (a.getName().equalsIgnoreCase(chosenName))
+        {
+            appliance_found=true;
+           appliances.remove(i);
+           System.out.println("Appliance "+ chosenName +" has been deleted.");
+        }
+        else if (appliance_found=false)
+            {
+             System.out.println("Appliance was not found");
+            }
+
+        
+    }   
+      }
+     public static void option6 (ArrayList<Appliance> appliances)
+     {
+        Scanner keyboard = new Scanner(System.in);
+        String sort;
+        System.out.println("What would you like to sort?\n1. Name");
+        sort = keyboard.nextLine();
+        if(sort.equalsIgnoreCase("name"))
+        {
+           Collections.sort(appliances);
+           System.out.println(appliances);
+        }
+        else
+        {
+            System.out.println("Sorry that can't be sorted");
+        }
+     }
+
 }
+
