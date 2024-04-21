@@ -1,5 +1,5 @@
 
-package Appliance;
+package semester2project;
 
 import java.util.ArrayList;
 
@@ -94,6 +94,15 @@ public class House
             daily_cost =  daily_cost + this.appliances.get(i).getDailycost ();
         }
         return daily_cost;
+    }
+    public double totalEnergy ()
+    {
+        double energy = 0;
+        for (int i = 0; i < this.appliances.size();i++)
+        {
+            energy =  energy + this.appliances.get(i).getEnergy ();
+        }
+        return energy;
     }
 
    

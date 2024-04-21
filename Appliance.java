@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Appliance;
+package semester2project;
 
 import java.util.ArrayList;
 
@@ -87,27 +87,15 @@ public class Appliance implements Comparable <Appliance>
 
     public int compareTo(Appliance other)
     {
-        if(this.energy < other.energy)
-        {
-            return -1;
-        }
-        else if(this.energy > other.energy)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
+    return this.location.compareToIgnoreCase(other.location);
+}
     
     public boolean equals(Appliance other)
     {
         if(other instanceof Appliance)
         {
             Appliance a = (Appliance) other;
-            if(this.energy == other.energy && 
-                    this.name.equals(other.name))
+            if(this.location == other.location)
             {
                 return true;
             }
