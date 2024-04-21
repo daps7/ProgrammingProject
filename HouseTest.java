@@ -1,4 +1,5 @@
-package semester2project;
+
+package Appliance;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -34,7 +35,7 @@ public class HouseTest {
         printMenu();
         System.out.println("Please input your chosen option");
         int option = keyboard.nextInt();
-        while(option !=7)
+        while(option !=8)
         {
             if(option == 1)
             {
@@ -60,6 +61,10 @@ public class HouseTest {
             {
                 option6(h1.getAppliances());
             }
+            else if (option==7)
+            {
+                option7(h1.getAppliances());
+            }
             else        
             {
                 System.out.println("Invalid input please try again");
@@ -80,7 +85,8 @@ public class HouseTest {
         System.out.println("4. View Appliances");
         System.out.println("5. Delete Appliance");
         System.out.println("6. Sort the appliances");
-        System.out.println("7. Exit");
+        System.out.println("7. Clear all appliances");
+        System.out.println("8. Exit");
        System.out.println("*****************************************************************************************");
     }
         public static void option1(House h1)
@@ -254,8 +260,27 @@ public class HouseTest {
         else
         {
             System.out.println("Sorry that can't be sorted");
-        }
+        }  
      }
+        public static void option7(ArrayList<Appliance> appliances)
+        {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("Are you sure you want to clear all the appliances?");
+            String yesorno=""; 
+            yesorno= keyboard.nextLine();
+            if(yesorno.equalsIgnoreCase("yes"))
+            {
+                appliances.clear();
+            }
+            else if (yesorno.equalsIgnoreCase("no"))
+            {
+                System.out.println("Appliances has not been cleared");
+            }
+            else
+            {
+                System.out.println("Invalid input please try again");
+            }
+        }
         public static void printHouse (House h1)
 {
         
